@@ -1,0 +1,195 @@
+package mymoves;
+import ru.ifmo.se.pokemon.*;
+
+public class AirSlash extends SpecialMove {
+    public AirSlash(){
+        super(Type.FLYING,75,95);
+    }
+    @Override
+    public void applyOppEffects(Pokemon p) {
+        if (Math.random() <= 0.3) {
+            Effect.flinch(p);
+        }
+    }
+    @Override
+    protected String describe() {
+        return "does AirSlash";
+    }
+}
+
+
+public class ChargeBeam extends SpecialMove {
+    public ChargeBeam(){
+        super(Type.ELECTRIC,50,90);
+    }
+    @Override
+    protected void applySelfEffects(Pokemon p) {
+        p.addEffect(new Effect().chance(0.7).turns(1).stat(Stat.SPECIAL_ATTACK, 3));
+    }
+    @Override
+    protected String describe() {
+        return "does ChargeBeam";
+    }
+}
+
+
+public class ConfuseRay extends StatusMove {
+    public ConfuseRay(){
+        super(Type.GHOST,0,100);
+    }
+    @Override
+    protected void applySelfEffects (Pokemon p) {
+        Effect.confuse(p);
+        if (Math.random() < 0.33) {
+            p.setMod(Stat.HP, -40);
+        }
+    }
+    @Override
+    protected String describe() {
+        return "does ConfuseRay";
+    }
+}
+
+
+public class DoubleTeam extends StatusMove {
+    public DoubleTeam(){
+        super(Type.NORMAL,0,0);
+    }
+    @Override
+    protected void applySelfEffects(Pokemon p) {
+        p.setMod (Stat.EVASION, 1);
+    }
+    @Override
+    protected String describe() {
+        return "does DoubleTeam";
+    }
+}
+
+
+public class Facade extends PhysicalMove {
+    public Facade(){
+        super(Type.NORMAL,70,100);
+    }
+    @Override
+    public void applyOppDamage(Pokemon p, double damage){
+        Status cond = p.getCondition();
+        if (cond.equals(Status.POISON) || cond.equals(Status.BURN) || cond.equals(Status.PARALYZE)) {
+            p.setMod(Stat.HP, 2*(int)Math.round(damage));
+        }
+    }
+    @Override
+    protected String describe() {
+        return "does Facade";
+    }
+}
+
+
+public class LeafBlade extends PhysicalMove {
+    public LeafBlade(){
+        super(Type.GRASS,90,100);
+    }
+    @Override
+    protected void applyOppEffects(Pokemon p) {
+        p.addEffect(new Effect().chance(0.1).turns(-1).stat(Stat.SPECIAL_DEFENSE, -1));
+    }
+    @Override
+    protected String describe() {
+        return "does LeafBlade";
+    }
+}
+
+
+public class Rest extends StatusMove {
+    public Rest(){
+        super(Type.PSYCHIC,0,0);
+    }
+    @Override
+    protected void applySelfEffects(Pokemon p){
+        Effect e1 = new Effect().turns(2).condition(Status.SLEEP);
+        Effect e = new Effect().turns(0).stat(Stat.HP,-99999);
+        p.addEffect(e);
+        p.setCondition(e1);
+    }
+    @Override
+    protected String describe() {
+        return "does Rest";
+    }
+}
+
+
+public class Slash extends PhysicalMove {
+    public Slash(){
+        super(Type.NORMAL,70,100);
+    }
+    @Override
+    protected void applyOppEffects(Pokemon p) {
+        p.addEffect(new Effect().chance(0.1).turns(-1).stat(Stat.SPECIAL_DEFENSE, -1));
+    }
+    @Override
+    protected String describe() {
+        return "does Slash";
+    }
+}
+
+
+public class SteelWing extends PhysicalMove {
+    public SteelWing(){
+        super(Type.STEEL,70,90);
+    }
+    @Override
+    protected void applyOppEffects(Pokemon p) {
+        p.addEffect(new Effect().chance(0.1).turns(-1).stat(Stat.SPECIAL_DEFENSE, -1));
+    }
+    @Override
+    protected String describe() {
+        return "does SteelWing";
+    }
+}
+
+
+public class Swagger extends StatusMove {
+    public Swagger(){
+        super(Type.NORMAL,0,85);
+    }
+    @Override
+    protected void applyOppEffects(Pokemon p){
+        p.confuse();
+        p.setMod(Stat.ATTACK,2);
+    }
+    @Override
+    protected String describe() {
+        return "does Swagger";
+    }
+}
+
+
+public class Thunderbolt extends SpecialMove {
+    public Thunderbolt() {
+        super(Type.ELECTRIC,90,100);
+    }
+    @Override
+    public void applyOppEffects(Pokemon p) {
+        if (Math.random() <= 0.1) {
+            Effect.paralyze(p);
+        }
+    }
+    @Override
+    protected String describe() {
+        return "does Thunderbolt";
+    }
+}
+
+
+public class WillOWisp extends StatusMove {
+    public WillOWisp() {
+        super(Type.FIRE, 0, 85);
+    }
+    @Override
+    protected void applyOppEffects(Pokemon p) {
+        Effect e = new Effect().stat(Stat.ATTACK, -3).condition(Status.BURN);
+        p.addEffect(e);
+    }
+        @Override
+        protected String describe() { return "does WillOWisp";}
+
+}
