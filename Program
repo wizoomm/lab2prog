@@ -1,0 +1,27 @@
+package lab2;
+
+import ru.ifmo.se.pokemon.*;
+import mypokemons.*;
+
+public class Program {
+
+    public static void main(String[] args) {
+
+
+        Battle b = new Battle();
+        Rotom Rotom = new Rotom("Trululu", 1);
+        Nuzleaf Nuzleaf = new Nuzleaf("Trululu2", 2);
+        Seedot Seedot = new Seedot("Trululu3", 3);
+        Shiftry Shiftry = new Shiftry("Pumpum", 1);
+        Yanma Yanma = new Yanma("Pumpum2", 2);
+        Yanmega Yanmega = new Yanmega("Pumpum3", 3);
+        b.addFoe(Rotom);
+        b.addFoe(Nuzleaf);
+        b.addFoe(Seedot);
+        b.addAlly(Shiftry);
+        b.addAlly(Yanma);
+        b.addAlly(Yanmega);
+        b.go();
+
+    }
+}
